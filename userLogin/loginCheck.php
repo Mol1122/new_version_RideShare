@@ -7,7 +7,7 @@ $bottom = "";
 $transionName = "Login ";
 if (isset($_POST["submit"])) {
     $email = trim($_POST["email"]);
-    $password= trim($_POST["password"]);
+    $user_password= trim($_POST["password"]);
     $driver_or_rider = $_POST["driver_or_rider"];
 
     $db_connection = new mysqli($host, $user, $password, $database);
@@ -39,7 +39,7 @@ EOBOY;
                 $result->data_seek(0);
                 $row = $result->fetch_array(MYSQLI_ASSOC);
                 $queryPassword = $row["password"];
-                if (password_verify($password, $queryPassword)) {
+                if (password_verify($user_password, $queryPassword)) {
                     setcookie("login", $email, 0);
                     if ($driver_or_rider == "Driver") {
                         if($_POST["start"])
