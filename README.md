@@ -46,6 +46,13 @@ USAGE:
                                     email varchar(100),
                                     origin varchar(100),
                                     destination varchar(100),
-                                    start_time datetime,driver int
+                                    start_time datetime,
+                                    driver int
                                 );
+        4 - Update the below variables in /db/dbLogin.php:
+
+            1) $host - host address
+            2) $user - database username
+            3) $password - password associated with the username
+            4) $database - database name (rideshare)
 
