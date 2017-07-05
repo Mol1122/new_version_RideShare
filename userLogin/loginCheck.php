@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
     $password= trim($_POST["password"]);
     $driver_or_rider = $_POST["driver_or_rider"];
 
-    $db_connection = new mysqli($host, $root, $password, $database);
+    $db_connection = new mysqli($host, $user, $password, $database);
     if ($db_connection->connect_error) {
         $bottom .= "<h3>Connection to the database error<h3><br />";
         die($db_connection->connect_error);
