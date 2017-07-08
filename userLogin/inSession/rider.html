@@ -39,6 +39,24 @@
             font-family: Roboto;
         }
 
+        #submit {
+            margin:auto;
+            display:block;
+            display: inline-block;
+            border-radius: 2px;
+            background-color: #37CCB0 ;
+            color: black;
+            font-weight: bold;
+            font-family: 'Julius Sans One', 'Bubbler One', 'Exo 2', sans-serif;
+            font-size: 1rem;
+            color: #FFFFFF; 
+            box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.10);
+            padding: 14px 22px;
+            border: 0;
+            margin-top:20px;
+            min-width: 200px;
+        }
+
         #type-selector {
             color: #fff;
             background-color: #4d90fe;
@@ -129,13 +147,15 @@
     <br><br></rb>                    
     <div class="container " style="width: 80%;">        
         <form id="form"  style="margin-left: 220px;" action="retrieve_data.php" method="post" onsubmit="return check();">    
+            <p>Addresses<p>
             <input id="pac-input" name="dep" class="controls" type="text" placeholder="Place of Departure" required>
             <input id="pac-input2" name="des" class="controls" type="text" placeholder="Destination" required>
+            <p>Pickup Time</p>
             <input type="datetime-local" class="controls" id="date" name="start" required>
             <input hidden type="text" name="L1" id="L1">
             <input hidden type="text" name="L2" id="L2">
                                             
-                                     
+            <br><br><br>                         
             &nbsp; &nbsp; &nbsp;<button type="submit" id="submit" name="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-search"> </span> Find Ride </button>
                                         
              <div class="row justify-content-md-center" style="margin-left: 110px;">
