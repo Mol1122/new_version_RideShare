@@ -1,8 +1,8 @@
 <?php
 	/* Update based on your database and account info */
-	$host = "localhost";
+	$host = "127.0.0.1";
 	$user = "root";
-	$password = null;
+	$password = "Craclepifrep1!!";
 	$database = "rideshare";
 	$table = "users";
 	$tableDrivers = "drivers";
