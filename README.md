@@ -49,6 +49,7 @@ USAGE:
                                     start_time datetime,
                                     driver int
                                 );
+                                
         4 - Update the below variables in /db/dbLogin.php:
 
             1) $host - host address
