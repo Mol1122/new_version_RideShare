@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ride share research project">
+    <meta name="author" content="Xi Chen">
+
+    <title>UMCP RideShare</title>
+    
+    <!--icon-->
+    
+    <link rel="shortcut icon" href="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/car-128.png" type="image/vnd.microsoft.icon" />
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--<!-- Theme CSS -->
+    <link href="css/styleMainPage.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Exo+2:200|Julius+Sans+One" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top" class="index">
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">UMD RideShare</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li class="page-scroll">
+                        <a href="userRegistration/registration.php" class="portfolio-link" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    </li>
+                     <li class="page-scroll">
+                        <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                     </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <!--main button --> 
+        <div class="container">
+               <div class="row">
+
+                        <div class="col-6 col-md-4 btn btn-lg btn-outline" style="padding-bottom: 40px; background-color: rgba(0,0,0,.8); border: 0px;">
+                              
+                                <!--<a href="#portfolio"> <img class='icon' src="assets/car.png" ></a>-->
+                                      
+                                <a href="#portfolio">
+                                  <h2 style="color:#37CCB0;">Individuals</h2>
+                                  <button>
+                                Find your Ride <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></a>
+                        </div>
+                        <div class="col-6 col-md-4"></div>
+                        <div class="col-6 col-md-4 btn btn-lg btn-outline" style="padding-bottom: 40px; background-color: rgba(0,0,0,.8); border: 0px;">
+
+                                <!--<a href="#portfolio"> <img class='icon' src="assets/car.png" ></a>-->
+
+                                <a href="#event">
+                                    <h2 style="color:#37CCB0;">Organization</h2>
+                                    <button>
+                                        <a href = "#event" style="color: black; ">Join a Event <span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></button></a>
+                        </div>
+
+                </div>
+        </div>
+    </header>
+    
+      <!-- Sing up and Login button -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sign Up | Login </h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 portfolio-item">
+                    <a href="userRegistration/registration.php" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="assets/signup.png" class="img-responsive" alt="Cabin">
+                    </a>
+                </div>
+                <!-- popup -->
+                <div class="col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="assets/login.png" class="img-responsive" alt="Slice of cake">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Organizer look up and Individual join in button -->
+<section id="event">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Organizer | Participant </h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 portfolio-item">
+                <a href="#organizer" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="assets/signup.png" class="img-responsive" alt="Cabin">
+                </a>
+            </div>
+            <!-- event popup is better -->
+            <div class="col-sm-6 portfolio-item">
+                <a href="#organizer" class="portfolio-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="assets/login.png" class="img-responsive" alt="Slice of cake">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+     <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About RideShare</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <h3>For Drivers:</h3><br>
+                    <p>Going somewhere but does't want to go alone or pay for the costs of the trip alone? RideShare at UMD helps you find carpool mates from anywhere to anywhere completly free. </p>
+                    <br></p>Sign up now and start your own ride. Users going to the same destination can join your ride. You may ask them to contribute to trip cost!</p><br>
+                    <p>If you ever feel like just enjoying the ride, you can join other riders too. </p>
+                </div>
+                <div class="col-lg-4">
+                    <h3>For Riders:</h3><br>
+                    <p>Going somewhere but don't feel like driving or you don't own a car? RideShare at UMD helps you find carpool drivers from anywhere to anywhere completly free. </p>
+                   <br></p>Sign up now and search for trips that match your own. If a match is found you can joing the ride. You may be asked to contribute to the trip cost!</p><br>
+                    <p>If you ever feel like driving, you can start your own ride and other riders can joins. </p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <br><h6>(RiderShare is not responsible for any payment transactions between driver and rider)</h6>
+                    <a href="userRegistration/registration.php" class="btn btn-lg btn-outline">                       
+                        <i class="glyphicon glyphicon-user"></i> Create an Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>University of Maryland
+                            <br>College Park, MD
+                            <br>(301) 405-1000</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About RideShare</h3>
+                        <p>RideShare is a free to use application created for CMSC389N Spring 2017 at UMD.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Ride Share 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+
+<!-- popup script-->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Login</h2>
+                            <hr class="star-primary">
+                            <!--<img src="assets/signup.png" heigth='100px' width='500px' class="img-responsive img-centered" alt="">-->
+                        
+                             <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                                    <form action = "userLogin/loginCheck.php" method = "post">
+                                        <div class="row control-group">
+                                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                <label>Log in as:</label>
+                                                <div class=col-xs-6 floating-label-form-group controls">                                           
+                                                    <input type="radio" name="driver_or_rider" class="form-control" value="Driver" id="driver" required > Driver
+                                                 </div>
+                                                <div class=col-xs-6 floating-label-form-group controls">
+                                                    <input type="radio" name="driver_or_rider" class="form-control" value="Rider" id="rider" required > Rider                                                      
+                                                </div>
+                                    </div>
+                                        </div>
+                                                                   
+                                        <div class="row control-group">
+                                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row control-group">
+                                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                <label for="password">Password</label>
+                                                <input type="password" name = "password" class="form-control" placeholder="Password" id="password" required>
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row control-group">
+                                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                <label for="start">New Rider?</label>
+                                                <input type="checkbox" name="start[]" class="form-control" id="start" value="start">Start a new ride
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <br>
+                                        <div id="success"></div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <button name="submit" value="submit" data-toggle="modal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-log-in">&nbsp; </span> Login</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- popup organizer script-->
+<div class="portfolio-modal modal fade" id="organizer" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Organizer</h2>
+                        <hr class="star-primary">
+                        <!--<img src="assets/signup.png" heigth='100px' width='500px' class="img-responsive img-centered" alt="">-->
+
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                                <form action = "Organization/organizer_choice.php" method = "post">
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>I want to</label>
+                                            <div class=col-xs-6 floating-label-form-group controls">
+                                            <input type="radio" name="signup_or_login" class="form-control" value="Sign Up" id="signup" required > Sign Up
+                                        </div>
+                                        <div class=col-xs-6 floating-label-form-group controls">
+                                        <input type="radio" name="signup_or_login" class="form-control" value="Log In" id="login" required > Log In
+                                    </div>
+                                </div>
+                        </div>
+
+                        <br>
+                        <div id="organizer_success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button name="submit" value="submit" data-toggle="modal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-log-in">&nbsp; </span> Go</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- popup organizer login (try not to use it) -->
+<div class="portfolio-modal modal fade" id="organizer_login" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>Organizer Login</h2>
+                        <hr class="star-primary">
+                        <!--<img src="assets/signup.png" heigth='100px' width='500px' class="img-responsive img-centered" alt="">-->
+
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                                <form action = "organizerLogin_process.php" method = "post">
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Log in as:</label>
+                                            <div class=col-xs-6 floating-label-form-group controls">
+                                            <input type="radio" name="organizer_choice" class="form-control" value="Look Up Event" id="look_up_event" required > Look Up Event
+                                        </div>
+                                        <div class=col-xs-6 floating-label-form-group controls">
+                                        <input type="radio" name="organizer_choice" class="form-control" value="Edit" id="edit" required > Edit
+                                    </div>
+                                    <div class=col-xs-6 floating-label-form-group controls">
+                                    <input type="radio" name="organizer_choice" class="form-control" value="New Event" id="new_event" required > New Event
+                            </div>
+                                </form></div>
+                        </div>
+
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label for="email">Email</label>
+                                <input type="email" name="organizer_login_email" class="form-control" placeholder="Email" id="organizer_login_email" required>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label for="password">Password</label>
+                                <input type="password" name = "organizer_login_password" class="form-control" placeholder="Password" id="organizer_login_password" required>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div id="organizerLogin_success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button name="submit" value="submit" data-toggle="modal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-log-in">&nbsp; </span> Login</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
