@@ -29,11 +29,11 @@ if (isset($_POST["submit"])) {
             $body .=<<< EFBODY
             <script>
                 $("#closeX").click(function () {
-                    window.location.replace("/RideShare/index.html");
+                    window.location.replace("../index.html");
                 });
 
                 $("#closeB").click(function () {
-                    window.location.replace("/RideShare/index.html");
+                    window.location.replace("../index.html");
                 });
             </script>
 EFBODY;
