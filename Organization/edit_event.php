@@ -29,6 +29,9 @@ if (isset($_POST['event'])) {
             $old_time = $row[4];
             $old_time = str_replace(" ", "T", $old_time);
             $old_website = $row[5];
+            $query2 = "SELECT * FROM eventLocations WHERE eid=\"$eid\";";
+            $result2 = $db_connection->query($query2, MYSQLI_STORE_RESULT);
+            $rownumbers = $result2->num_rows;
         }
     }
 }
@@ -41,7 +44,11 @@ if (isset($_POST['event'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-    <style>
+        <style>
+        .btn-add, .btn-remove {
+            margin-left:10px;
+            height: 32px;
+        }
         .controls {
             margin-top: 10px;
             border: 1px solid transparent;
@@ -51,18 +58,29 @@ if (isset($_POST['event'])) {
             height: 32px;
             outline: none;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            margin-right:0px;
         }
 
-        #pac-input,#pac-input2,#organization,#event_title,#time,#website {
+        #pac-input,#pac-input2,#organization,#event_title,#time,#website{
             text-align: left;
             font-weight: bold;
-            width: 1200px;
             color: #303030;
             margin-left: 12px;
             padding: 0 11px 0 13px;
             text-overflow: ellipsis;
             width: 500px;
 
+        }
+
+        .options{
+            text-align: left;
+            font-weight: bold;
+            width: 450px;
+            color: #303030;
+            margin-top: 18px;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
         }
 
         #pac-input:focus {
@@ -95,8 +113,8 @@ if (isset($_POST['event'])) {
             width: auto;
         }
 
-    </style>
 
+    </style>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Ride share research project">
@@ -164,14 +182,50 @@ if (isset($_POST['event'])) {
 <div class="container " style="width: 80%;">
     <form align = "center" id="form"  style="margin: 0 auto;" action="submit_event_edit.php" method="post" onsubmit="return check();">
             <input type="hidden" name="eid" value="<?php echo $eid;?>">
-            <h3>Organization: <?php echo $_SESSION['organization'];?></h3><br /><br />
-            <h4>Event Title: </h4>
+            <h3>Organization <?php echo $_SESSION['organization'];?></h3><br /><br />
+            <h4>Event Title </h4>
             <input type="text" class="controls" placeholder="Event Title"  name="event_title" id="event_title" value="<?php echo $old_event_title;?>" required><br /><br />
-            <h4>Event Location: </h4>
+            <h4>Event Location </h4>
             <input id="pac-input" name="dep" class="controls" type="text" placeholder="Event Location" value="<?php echo $old_location;?>"required><br /><br />
-            <h4>Event Time: </h4>
+
+            <div class="dynamic-add">
+
+                <h4> Add Pickup Locations </h4>
+                <?php
+                    $ct = 0;
+                    while ($result2 && $row2 = mysqli_fetch_array($result2)){
+                        $ct++;
+                        if($ct === 1){
+                            echo <<< EOBODY
+                             <div class="entry">
+                                <input class="autocomplete controls options" name="fields[]" type="text" value="{$row2[1]}" required/>
+                                    <button class="btn btn-success btn-add" type="button">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                <br /><br />
+                            </div>
+EOBODY;
+                        }
+                        else{
+                            echo <<< EOBODY
+                             <div class="entry">
+                                <input class="autocomplete controls options" name="fields[]" type="text" value="{$row2[1]}" required/>
+                                    <button class="btn btn-danger btn-remove" type="button">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                <br /><br />
+                            </div>
+EOBODY;
+                        }
+
+                    }
+                        
+                ?>
+            </div>
+
+            <h4>Event Time </h4>
             <input type="datetime-local" class="controls" id="time" name="time" value="<?php echo $old_time;?>" required><br /> <br />
-            <h4>Event Website: </h4>
+            <h4>Event Website </h4>
             <input type="text" name="website" class="controls" placeholder="Website" id="website" value = "<?php echo $old_website;?>"><br /><br /><br />
             <input hidden type="text" name="L1" id="L1">
             <input hidden type="text" name="L2" id="L2">
@@ -202,6 +256,60 @@ if (isset($_POST['event'])) {
 
 <!-- Theme JavaScript -->
 <script src="../js/freelancer.min.js"></script>
+
+<script type="text/javascript">
+window.onload = function(){
+function initialize() {
+
+    var acInputs = document.getElementsByClassName("autocomplete");
+
+    for (var i = 0; i < acInputs.length; i++) {
+
+        var autocomplete = new google.maps.places.Autocomplete(acInputs[i]);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        });
+    }
+}
+
+initialize();  
+}
+
+</script>
+
+<script>
+var num = $('.options').length;
+var numLimit = 100;
+$(function()
+{
+    if (num <= numLimit){
+    $(document).on('click', '.btn-add', function(e)
+    {   
+        num++;
+            e.preventDefault();
+
+            var controlForm = $('.dynamic-add'),
+                currentEntry = $(this).parents('.entry:first'),
+                newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+            newEntry.find('input').val('');
+            controlForm.find('.entry:last .btn-add')
+                .removeClass('btn-add').addClass('btn-remove')
+                .removeClass('btn-success').addClass('btn-danger')
+                .html('<span class="glyphicon glyphicon-minus"></span>');
+        }).on('click', '.btn-remove', function(e)
+        {
+            num--;
+            $(this).parents('.entry:first').remove();
+
+            e.preventDefault();
+            return false;
+        });
+    }
+
+        
+});
+</script>
 
 <script>
     function set(){

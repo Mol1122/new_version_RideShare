@@ -39,9 +39,24 @@ if (isset($_POST["submit"])){
 	        $location = trim($_POST["dep"]);
 	        $time = trim($_POST["time"]);
 	        $website = trim($_POST["website"]);
+            $fields = $_POST["fields"];
 	        $query = "UPDATE events SET title=\"$event_title\", location=\"$location\", time=\"$time\", website=\"$website\" WHERE id=$eid;";
 	        $result = $db_connection->query($query);
-	        if (!$result) {
+            $query2 = "DELETE FROM eventLocations WHERE eid=$eid;";
+            $result2 = $db_connection->query($query2);
+            $good = "Yes";
+            foreach($fields as $a => $b){
+                $fields[$a] = trim($fields[$a]);
+                $query = "SELECT * FROM eventLocations WHERE eid=$eid AND location=\"$fields[$a]\";";
+                $result4 = $db_connection->query($query);
+                if (!$result4){$good = "No"; break;}
+                if ($result4->num_rows === 0){
+                    $query = "INSERT into eventLocations values($eid, \"$fields[$a]\");";
+                    $result3 = $db_connection->query($query);
+                    if (!$result3){$good = "No";}
+                }
+            }
+	        if (!$result || !$result2 || $good == "No") {
 	            $transitionName .= "Edit Event Fail";
 	            die("Edit failed: " . $db_connection->error);
 	        } 
@@ -53,6 +68,6 @@ if (isset($_POST["submit"])){
     }
 }
 
-$page=generatePage($body, $transitionName);
+$page=generatePage($body, "Edit Event", $transitionName);
 echo $page;
 ?>

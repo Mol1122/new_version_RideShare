@@ -15,6 +15,10 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
 
 
     <style>
+        .btn-add, .btn-remove {
+            margin-left:10px;
+            height: 32px;
+        }
         .controls {
             margin-top: 10px;
             border: 1px solid transparent;
@@ -26,7 +30,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        #pac-input,#pac-input2,#organization,#event_title,#time,#website {
+        #pac-input,#pac-input2,#organization,#event_title,#time,#website{
             text-align: left;
             font-weight: bold;
             width: 1200px;
@@ -36,6 +40,17 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
             text-overflow: ellipsis;
             width: 500px;
 
+        }
+
+        .options{
+            text-align: left;
+            font-weight: bold;
+            width: 450px;
+            color: #303030;
+            margin-top: 18px;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
         }
 
         #pac-input:focus {
@@ -67,6 +82,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
             text-overflow: ellipsis;
             width: auto;
         }
+
 
     </style>
 
@@ -134,12 +150,29 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
 <br><br></rb>
 
 
-<div class="container " style="width: 80%;">
-    <form id="form"  style="margin-left: 220px;" action="event_process.php" method="post" onsubmit="return check();">
-        <h3>Organization: <?php echo $_SESSION['organization'];?></h3><br /><br />
+<div class="container" style="width: 80%;">
+    <form id="form"  class = "form-horizontal" style="margin-left: 220px;" action="event_process.php" method="post" onsubmit="return check();">
+        <h3>Organization: <?php echo $_SESSION['organization'];?></h3>
+        <br>
+        <h4> Event Title </h4>
         <input type="text" class="controls" placeholder="Event Title"  name="event_title" id="event_title" required><br /><br />
+        <h4> Event Location </h4>
         <input id="pac-input" name="dep" class="controls" type="text" placeholder="Event Location" required><br /><br />
+
+        <div class="dynamic-add">
+            <h4> Add Pickup Locations </h4>
+            <div class="entry ">
+                <input class="autocomplete controls options" name="fields[]" type="text" placeholder="Pickup Location" required />
+                    <button class="btn btn-success btn-add" type="button">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                <br /><br />
+            </div>
+        </div>
+
+        <h4> Event Time </h4>
         <input type="datetime-local" class="controls" id="time" name="time" required><br /> <br />
+        <h4> Event Website </h4>
         <input type="text" name="website" class="controls" placeholder="Website" id="website"><br /><br /><br />
         <input hidden type="text" name="L1" id="L1">
         <input hidden type="text" name="L2" id="L2">
@@ -164,10 +197,6 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
     </form>
 </div>
 
-
-<!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -181,11 +210,61 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
 <script src="../js/freelancer.min.js"></script>
 
 <script>
+var num = 1;
+var numLimit = 100;
+$(function()
+{
+    if (num <= numLimit){
+    $(document).on('click', '.btn-add', function(e)
+    {   
+        num++;
+            e.preventDefault();
+
+            var controlForm = $('.dynamic-add'),
+                currentEntry = $(this).parents('.entry:first'),
+                newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+            newEntry.find('input').val('');
+            controlForm.find('.entry:last .btn-add')
+                .removeClass('btn-add').addClass('btn-remove')
+                .removeClass('btn-success').addClass('btn-danger')
+                .html('<span class="glyphicon glyphicon-minus"></span>');
+        }).on('click', '.btn-remove', function(e)
+        {
+            num--;
+            $(this).parents('.entry:first').remove();
+
+            e.preventDefault();
+            return false;
+        });
+    }
+
+        
+});
+</script>
+<script type="text/javascript">
+window.onload = function(){
+function initialize() {
+
+    var acInputs = document.getElementsByClassName("autocomplete");
+
+    for (var i = 0; i < acInputs.length; i++) {
+
+        var autocomplete = new google.maps.places.Autocomplete(acInputs[i]);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        });
+    }
+}
+
+initialize();  
+}
+
+</script>
+
+<script>
     function set(){
         console.log("in");
-        $('#sign').hide();
-        $('#sign').click();
-
     }
 
     $("#closeX").click(function () {

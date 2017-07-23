@@ -36,13 +36,24 @@ else{
 		$body .= '<h3>Select an event to edit. </h3>';
 		$body .= '<form id = \'editform\' action=\'edit_event.php\' method=\'post\'>';
 		while ($row1 = mysqli_fetch_array($result)){
+			$query2 = "SELECT * from eventLocations where eid=$row1[0];";
+			$result2 = $db_connection->query($query2, MYSQLI_STORE_RESULT);
 			$body .= '<input type="radio" style="margin-right: 1rem;" name="event" value="'.$row1[0].'"required/>'."".$row1[1].'<br>';
 			$body .= <<<EOBODY
 
 					<div class="row control-group btn-outline" style="padding: 20px;text-align: left;color:black;border-radius: 10px; border:1px; border-color:black; background-color:rgba(0,0,0, .2);">
 						<h3>Event information:</h3>
 						<p><strong>Event Name: </strong> {$row1[1]}</p>
-                        <p><strong>Location: </strong> {$row1[3]} </p>
+                        <p><strong>Event Location: </strong> {$row1[3]} </p>
+EOBODY;
+			$ct = 0;
+			while ($row2 = mysqli_fetch_array($result2)){
+				$ct += 1;
+				$body .= <<<EOBODY
+				<p><strong>Pickup Location #{$ct}: </strong> {$row2[1]}</p>
+EOBODY;
+			}
+			$body .= <<< EOBODY
                         <p><strong>Time: </strong> {$row1[4]} </p>
                         <p><strong>Website: </strong> {$row1[5]} </p><br>
 						<h4>Participation: {$row1[6]}</h4>
