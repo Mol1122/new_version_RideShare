@@ -155,7 +155,7 @@
             </div>
             <!-- event popup is better -->
             <div class="col-sm-6 portfolio-item">
-                <a href="#organizer" class="portfolio-link" data-toggle="modal">
+                <a href="#participant" class="portfolio-link" data-toggle="modal">
                     <div class="caption">
                         <div class="caption-content">
                             <i class="fa fa-search-plus fa-3x"></i>
@@ -394,8 +394,8 @@
 </div>
 </div>
 
-<!-- popup organizer login (try not to use it) -->
-<div class="portfolio-modal modal fade" id="organizer_login" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- popup participant script-->
+<div class="portfolio-modal modal fade" id="participant" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
@@ -407,7 +407,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <h2>Organizer Login</h2>
+                        <h2>Participant</h2>
                         <hr class="star-primary">
                         <!--<img src="assets/signup.png" heigth='100px' width='500px' class="img-responsive img-centered" alt="">-->
 
@@ -415,43 +415,24 @@
                             <div class="col-lg-8 col-lg-offset-2">
                                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                                 <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                                <form action = "organizerLogin_process.php" method = "post">
+                                <form action = "Participant/participant_choice.php" method = "post">
                                     <div class="row control-group">
                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <label>Log in as:</label>
+                                            <label>I want to</label>
                                             <div class=col-xs-6 floating-label-form-group controls">
-                                            <input type="radio" name="organizer_choice" class="form-control" value="Look Up Event" id="look_up_event" required > Look Up Event
+                                            <input type="radio" name="signup_or_login" class="form-control" value="Sign Up" id="signup" required > Sign Up
                                         </div>
                                         <div class=col-xs-6 floating-label-form-group controls">
-                                        <input type="radio" name="organizer_choice" class="form-control" value="Edit" id="edit" required > Edit
+                                        <input type="radio" name="signup_or_login" class="form-control" value="Log In" id="login" required > Log In
                                     </div>
-                                    <div class=col-xs-6 floating-label-form-group controls">
-                                    <input type="radio" name="organizer_choice" class="form-control" value="New Event" id="new_event" required > New Event
-                            </div>
-                                </form></div>
-                        </div>
-
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label for="email">Email</label>
-                                <input type="email" name="organizer_login_email" class="form-control" placeholder="Email" id="organizer_login_email" required>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label for="password">Password</label>
-                                <input type="password" name = "organizer_login_password" class="form-control" placeholder="Password" id="organizer_login_password" required>
-                                <p class="help-block text-danger"></p>
-                            </div>
+                                </div>
                         </div>
 
                         <br>
-                        <div id="organizerLogin_success"></div>
+                        <div id="participant_success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button name="submit" value="submit" data-toggle="modal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-log-in">&nbsp; </span> Login</button>
+                                <button name="submit" value="submit" data-toggle="modal" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-log-in">&nbsp; </span> Go</button>
                             </div>
                         </div>
                         </form>
@@ -465,7 +446,6 @@
 </div>
 </div>
 </div>
-
 
 
     <!-- jQuery -->

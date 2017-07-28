@@ -29,6 +29,7 @@ if (isset($_POST['event'])) {
             $old_time = $row[4];
             $old_time = str_replace(" ", "T", $old_time);
             $old_website = $row[5];
+            $pw = $row[7];
             $query2 = "SELECT * FROM eventLocations WHERE eid=\"$eid\";";
             $result2 = $db_connection->query($query2, MYSQLI_STORE_RESULT);
             $rownumbers = $result2->num_rows;
@@ -193,12 +194,23 @@ if (isset($_POST['event'])) {
                 <h4> Add Pickup Locations </h4>
                 <?php
                     $ct = 0;
+                    if ($result2 && $result2->num_rows === 0){
+                        echo <<< EOBODY
+                             <div class="entry">
+                                <input class="autocomplete controls options" name="fields[]" type="text" value="" required/>
+                                    <button class="btn btn-success btn-add" type="button">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                <br /><br />
+                            </div>
+EOBODY;
+                    }
                     while ($result2 && $row2 = mysqli_fetch_array($result2)){
                         $ct++;
                         if($ct === 1){
                             echo <<< EOBODY
                              <div class="entry">
-                                <input class="autocomplete controls options" name="fields[]" type="text" value="{$row2[1]}" required/>
+                                <input class="autocomplete controls options" name="fields[]" type="text" id="loc1" value="{$row2[1]}" required/>
                                     <button class="btn btn-success btn-add" type="button">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button>
@@ -209,7 +221,7 @@ EOBODY;
                         else{
                             echo <<< EOBODY
                              <div class="entry">
-                                <input class="autocomplete controls options" name="fields[]" type="text" value="{$row2[1]}" required/>
+                                <input class="autocomplete controls options" name="fields[]" type="text" id=loc{ct} value="{$row2[1]}" required/>
                                     <button class="btn btn-danger btn-remove" type="button">
                                         <span class="glyphicon glyphicon-minus"></span>
                                     </button>
@@ -227,6 +239,9 @@ EOBODY;
             <input type="datetime-local" class="controls" id="time" name="time" value="<?php echo $old_time;?>" required><br /> <br />
             <h4>Event Website </h4>
             <input type="text" name="website" class="controls" placeholder="Website" id="website" value = "<?php echo $old_website;?>"><br /><br /><br />
+
+            <input type="checkbox" style = "margin-right: 5px;" name="priv" value="priv" <?php if ($pw != null){echo "checked";} ?> > Make my event private: users won't be able to join without the event key. You can see your event key when you look up your event under "Look Up Event."<br/><br><br>
+
             <input hidden type="text" name="L1" id="L1">
             <input hidden type="text" name="L2" id="L2">
 
@@ -274,7 +289,6 @@ function initialize() {
 
 initialize();  
 }
-
 </script>
 
 <script>
@@ -293,6 +307,9 @@ $(function()
                 newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
             newEntry.find('input').val('');
+            newEntry.find('input').attr('id', 'loc'+ num);
+            var autocomplete = new google.maps.places.Autocomplete(document.getElementById('loc'+num));
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {});
             controlForm.find('.entry:last .btn-add')
                 .removeClass('btn-add').addClass('btn-remove')
                 .removeClass('btn-success').addClass('btn-danger')

@@ -162,7 +162,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
         <div class="dynamic-add">
             <h4> Add Pickup Locations </h4>
             <div class="entry ">
-                <input class="autocomplete controls options" name="fields[]" type="text" placeholder="Pickup Location" required />
+                <input class="autocomplete controls options" id="loc1" name="fields[]" type="text" placeholder="Pickup Location" required />
                     <button class="btn btn-success btn-add" type="button">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -174,6 +174,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
         <input type="datetime-local" class="controls" id="time" name="time" required><br /> <br />
         <h4> Event Website </h4>
         <input type="text" name="website" class="controls" placeholder="Website" id="website"><br /><br /><br />
+        <input type="checkbox" style = "margin-right: 5px;" name="priv" value="priv"> Make my event private: users won't be able to join without the event key. You can see your event key when you look up your event under "Look Up Event."<br/><br><br>
         <input hidden type="text" name="L1" id="L1">
         <input hidden type="text" name="L2" id="L2">
 
@@ -225,6 +226,9 @@ $(function()
                 newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
             newEntry.find('input').val('');
+            newEntry.find('input').attr('id', 'loc'+ num);
+            var autocomplete = new google.maps.places.Autocomplete(document.getElementById('loc'+num));
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {});
             controlForm.find('.entry:last .btn-add')
                 .removeClass('btn-add').addClass('btn-remove')
                 .removeClass('btn-success').addClass('btn-danger')

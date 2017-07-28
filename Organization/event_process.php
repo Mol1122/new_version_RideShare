@@ -25,11 +25,12 @@ if (isset($_POST["submit"])) {
         $time = trim($_POST["time"]);
         $website = trim($_POST["website"]);
         $fields = $_POST["fields"];
+        $pw = null;
         foreach($fields as $a => $b){
             $fields[$a] = trim($fields[$a]);
         }
 
-        $query = "insert into events values(NULL,\"$event_title\", \"$organization\", \"$location\", \"$time\", \"$website\", 0)";
+        $query = "insert into events values(NULL,\"$event_title\", \"$organization\", \"$location\", \"$time\", \"$website\", 0, \"$pw\");";
         $result = $db_connection->query($query);
         if (!$result) {
             $transitionName .= "Create New Event Fail";
@@ -45,12 +46,15 @@ if (isset($_POST["submit"])) {
                 $row = mysqli_fetch_array($result2);
                 $eid = $row[0];
                 $good = "Yes";
+                if ($_POST['priv'] == 'priv'){
+                    $pw = md5(uniqid($eid, true));
+                }
                 foreach($fields as $a => $b){
                     $query = "SELECT * FROM eventLocations WHERE eid=$eid AND location=\"$fields[$a]\";";
                     $result4 = $db_connection->query($query);
                     if (!$result4){$good = "No"; break;}
                     if ($result4->num_rows === 0){
-                        $query = "INSERT into eventLocations values($eid, \"$fields[$a]\");";
+                        $query = "INSERT into eventLocations values($eid, \"$fields[$a]\", 0);";
                         $result3 = $db_connection->query($query);
                         if (!$result3){$good = "No";}
                     }

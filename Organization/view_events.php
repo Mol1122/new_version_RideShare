@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 require_once("support.php");
 require_once("dbLogin.php");
 
@@ -9,7 +8,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
 	exit();
 }
 
-$transitionName="";
+$transitionName = "";
 $body = "";
 
 $db_connection = new mysqli($host, $user, $password, $database);
@@ -19,26 +18,23 @@ if ($db_connection->connect_error) {
     die($db_connection->connect_error);
 } 
 else{
-	$organization = trim($_SESSION["organization"]);
-	$query = "SELECT * from events where organization = \"$organization\" and time > NOW();";
+	$organization = trim($_SESSION['organization']);
+	$query = "SELECT * FROM events WHERE organization=\"$organization\" ORDER BY time DESC;";
 	$result = $db_connection->query($query, MYSQLI_STORE_RESULT);
-
 	if (!$result){
 		$transitionName = "Oops!";
 		$body .= '<h3>Sorry, something went wrong. Try again later! </h3>';
 	}
 	else if ($result->num_rows === 0){
-		$transitionName = "No Events Active";
-		$body .= '<h3>You have no active events to edit.</h3>';
+		$transitionName = "No Events Created";
+		$body .= '<h3>You have not created any events.</h3>';
 	}
 	else{
-		$transitionName = "Edit an Event";
-		$body .= '<h3>Select an event to edit. </h3>';
-		$body .= '<form id = \'editform\' action=\'edit_event.php\' method=\'post\'>';
+		$transitionName = "My Events";
+		$body .= 'You have created the following events.';
 		while ($row1 = mysqli_fetch_array($result)){
 			$query2 = "SELECT * from eventLocations where eid=$row1[0];";
 			$result2 = $db_connection->query($query2, MYSQLI_STORE_RESULT);
-			$body .= '<input type="radio" style="margin-right: 1rem;" name="event" value="'.$row1[0].'"required/>'."".$row1[1].'<br>';
 			$body .= <<<EOBODY
 
 					<div class="row control-group btn-outline" style="padding: 20px;text-align: left;color:black;border-radius: 10px; border:1px; border-color:black; background-color:rgba(0,0,0, .2);">
@@ -51,6 +47,7 @@ EOBODY;
 				$ct += 1;
 				$body .= <<< EOBODY
 				<p><strong>Pickup Location #{$ct}: </strong> {$row2[1]}</p>
+				<p><strong>Participants at Pickup Location #{$ct}: </strong> {$row2[2]} </p>
 EOBODY;
 			}
 			$body .= <<< EOBODY
@@ -69,17 +66,9 @@ EOBODY;
 EB;
 
 		}
-		$body .= <<<EOBODY
-			<div class = "row" align="center">
-				<div class="form-group">
-					<button style="margin: 0 auto;" type="submit" id="submit" name="submit" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit Event </button>
-				</div>
-			</div>
-EOBODY;
-		$body .= '</form>';
 	}
-}
 
-$page = generatePage($body, "Edit an Event", $transitionName);
+}
+$page = generatePage($body, "View My Events", $transitionName);
 echo $page;
 ?>

@@ -34,6 +34,7 @@ if (isset($_POST["submit"])){
             $old_time = $row[4];
             $old_time = str_replace(" ", "T", $old_time);
             $old_website = $row[5];
+            $old_pw = $row[7];
             $event_title = trim($_POST["event_title"]);
 	        $organization = $_SESSION['organization'];
 	        $location = trim($_POST["dep"]);
@@ -51,12 +52,40 @@ if (isset($_POST["submit"])){
                 $result4 = $db_connection->query($query);
                 if (!$result4){$good = "No"; break;}
                 if ($result4->num_rows === 0){
-                    $query = "INSERT into eventLocations values($eid, \"$fields[$a]\");";
+                    $query = "SELECT * FROM joinedEvents WHERE eid=$eid AND location=\"$fields[$a]\";";
+                    $result5 = $db_connection->query($query);
+                    if (!$result5){$good = "No";break;}
+                    $lp = $result5->num_rows;
+                    $query = "INSERT into eventLocations values($eid, \"$fields[$a]\", $lp);";
                     $result3 = $db_connection->query($query);
                     if (!$result3){$good = "No";}
                 }
             }
-	        if (!$result || !$result2 || $good == "No") {
+            $query6 = "SELECT * FROM joinedEvents WHERE eid=$eid;";
+            $result6 = $db_connection->query($query6);
+            while ($row6 = mysqli_fetch_array($result6)){
+                $query7 = "SELECT * FROM eventLocations WHERE eid=$eid AND location=\"trim($row6[2])\";";
+                $result7 = $db_connection->query($query7);
+                if ($result7 && $result7->num_rows===0){
+                    $result7 = $db_connection->query("DELETE FROM joinedEvents WHERE eid=$eid AND user_name=\"$row6[0]\";");
+                    $result7=$db_connection->query("UPDATE events SET participation = participation-1 WHERE id=$eid AND participation > 0;");
+                }
+                if (!$result7){$good="No";}
+            }
+            if ($_POST['priv'] == 'priv'){
+                if ($old_pw == null){
+                    $new_pw = md5(uniqid($eid, true));
+                    $query = "UPDATE events SET password=\"$new_pw\" WHERE id=$eid;";
+                    $result3 = $db_connection->query($query);
+                }
+            }
+            else{
+                if ($old_pw != null){
+                    $query = "UPDATE events SET password=null WHERE id=$eid;";
+                    $result3 = $db_connection->query($query);
+                }
+            }
+	        if (!$result || !$result2 || !$result3 || $good == "No") {
 	            $transitionName .= "Edit Event Fail";
 	            die("Edit failed: " . $db_connection->error);
 	        } 
