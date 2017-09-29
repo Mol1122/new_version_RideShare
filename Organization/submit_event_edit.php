@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
-    header("Location: ../index.html");
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+    header("Location: ../index.php");
     exit();
 }
 

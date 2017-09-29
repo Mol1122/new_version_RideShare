@@ -60,7 +60,7 @@ $body .= <<<EOBODY
 EOBODY;
 
 if (isset($_POST["return_main"])) {
-    header("Location: ../index.html");
+    header("Location: ../index.php");
 }
 else if (isset($_POST["submit"])) {
     $db = connectToDB($host, $user, $password, $database);
@@ -70,19 +70,29 @@ else if (isset($_POST["submit"])) {
 
     $user_name = trim($_POST["user_name"]);
     $email = trim($_POST["email"]);
-    $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
-    if (password_verify($_POST["password2"], $password)) {
-        $sqlQuery = "insert into eventUsers values(\"$user_name\", \"$email\", \"$password\", \"Yes\")";
+    $user_password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
+    $query = "SELECT * FROM eventUsers WHERE user_name=\"$user_name\" LIMIT 1;";
+    $result2 = mysqli_query($db, $query);
+    if (password_verify($_POST["password2"], $user_password) && $result2 && $result2->num_rows === 0) {
+        $sqlQuery = "insert into eventUsers values(\"$user_name\", \"$email\", \"$user_password\", \"Yes\")";
         $result = mysqli_query($db, $sqlQuery);
         if ($result) {
+            session_start();
+            $_SESSION['username'] = $user_name;
+            $_SESSION['o_or_p'] = 'o';
             header("Location: signup_successful.php");
-        } else {
+            exit();
+        }
+        else {
             $body = "<h3>Sign Up Failed<h3>" .$body;
         }
-    } else {
+    }
+    else if ($result2 && $result2->num_rows > 0){
+        $body = "<h3>This username is taken</h3>".$body;
+    }
+    else {
         $body = "<h3>Password doesn't matched<h3>" .$body;
     }
-
     /* Closing */
     mysqli_close($db);
 

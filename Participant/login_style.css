@@ -1,0 +1,100 @@
+.center-block {   
+  float: none;
+  display: inline-block;
+  margin: 0 auto;
+}  
+
+a:hover, a:focus {
+  color: #2a6496;
+  text-decoration: none;
+}
+.square-service-block{
+  margin: auto;
+	position:relative;
+	overflow:hidden;
+	margin:15px auto;
+  float:left;
+  width: 100%
+	}
+.square-service-block a {
+  background-color: #37ccb0;
+  display: block;
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.ssb-title{
+  font-size:4vw;
+}
+
+.square-service-block a:hover{
+  background-color: #58e0c7;
+}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    font-family: 'Julius Sans One', 'Bubbler One', 'Exo 2', sans-serif;
+    background-color:rgba(55, 204, 176, 0.4);
+    color:#ffffff;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    border:none;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: rgba(55, 204, 176, 0.7);;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: rgba(55, 204, 176, 1);
+}
+button.tablinks{
+  width:30%;
+  font-size:2vw;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display:none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+#startRide{
+  width:100%;
+}
+/*#cc3366*/
+#slidebar {
+  height: .25rem;
+  width: 100%;
+  margin: 0;
+  background: #37ccb0;
+  border: none;
+  transition: .3s ease-in-out;
+}
+
+h2{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 60%;
+}
+html{
+  height:100%;
+}
+body { 
+    height:100%;
+    padding-top: 15rem; 
+}

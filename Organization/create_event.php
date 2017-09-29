@@ -1,8 +1,8 @@
 <?php 
 
 session_start();
-if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
-    header("Location: ../index.html");
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+    header("Location: ../index.php");
     exit();
 }
 
@@ -152,7 +152,7 @@ if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
 
 <div class="container" style="width: 80%;">
     <form id="form"  class = "form-horizontal" style="margin-left: 220px;" action="event_process.php" method="post" onsubmit="return check();">
-        <h3>Organization: <?php echo $_SESSION['organization'];?></h3>
+        <h3>Organization: <?php echo $_SESSION['username'];?></h3>
         <br>
         <h4> Event Title </h4>
         <input type="text" class="controls" placeholder="Event Title"  name="event_title" id="event_title" required><br /><br />
@@ -272,11 +272,11 @@ initialize();
     }
 
     $("#closeX").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 
     $("#closeB").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 
     var markers = [];

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
-	header("Location: ../index.html");
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+	header("Location: ../index.php");
 	exit();
 }
 require_once("support.php");
@@ -10,7 +10,7 @@ require_once("dbLogin.php");
 if (isset($_POST['event'])) {
 	$db_connection = new mysqli($host, $user, $password, $database);
 	if ($db_connection->connect_error) {
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         die($db_connection->connect_error);
     }
     else{
@@ -19,7 +19,7 @@ if (isset($_POST['event'])) {
         $query = "SELECT * FROM events WHERE id=\"$eid\" LIMIT 1;";
         $result = $db_connection->query($query, MYSQLI_STORE_RESULT);
         if (!$result || $result->num_rows === 0){
-            header("Location: ../index.html");
+            header("Location: ../index.php");
             exit();
         }
         else{
@@ -337,11 +337,11 @@ $(function()
     }
 
     $("#closeX").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 
     $("#closeB").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 
     var markers = [];

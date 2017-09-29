@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['organization']) || empty($_SESSION['organization'])){
-    header("Location: ../index.html");
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+    header("Location: ../index.php");
     exit();
 }
 
@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
         die($db_connection->connect_error);
     } else {
         $event_title = trim($_POST["event_title"]);
-        $organization = $_SESSION['organization'];
+        $organization = $_SESSION['username'];
         $location = trim($_POST["dep"]);
         $time = trim($_POST["time"]);
         $website = trim($_POST["website"]);
@@ -69,11 +69,11 @@ if (isset($_POST["submit"])) {
                     $body .=<<< EFBODY
                     <script>
                         $("#closeX").click(function () {
-                            window.location.replace("../index.html");
+                            window.location.replace("login_page.php");
                         });
 
                         $("#closeB").click(function () {
-                            window.location.replace("../index.html");
+                            window.location.replace("login_page.php");
                         });
                     </script>
 

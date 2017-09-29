@@ -4,7 +4,7 @@ require_once("dbLogin.php");
 
 session_start();
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
-	header("Location: ../index.html");
+	header("Location: ../index.php");
 	exit();
 }
 
@@ -148,7 +148,7 @@ if ($db_connection->connect_error) {
 
 <?php
 if (isset($_POST['filterSubmit']) || 1===1){
-	$query = "SELECT * FROM events WHERE 1 = 1";
+	$query = "SELECT * FROM events WHERE time > NOW()";
 	if (isset($_POST['filterByName']) && $_POST['filterByName'] == "Yes"){
 		$text = trim($_POST['nameFilterText']);
 		$query .= " AND title LIKE \"%$text%\"";
@@ -252,11 +252,11 @@ EOBODY;
     }
 
     $("#closeX").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 
     $("#closeB").click(function () {
-        window.location.replace("../index.html");
+        window.location.replace("../index.php");
     });
 </script>
 

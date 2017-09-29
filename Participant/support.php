@@ -37,18 +37,8 @@ $page .= <<<EOPAGE
     <link href="https://fonts.googleapis.com/css?family=Exo+2:200" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Exo+2:200" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Exo+2:200|Julius+Sans+One" rel="stylesheet">
-    <style>
-        .controls {
-                margin-top: 10px;
-                border: 1px solid transparent;
-                border-radius: 2px 0 0 2px;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                height: 32px;
-                outline: none;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            }
-    </style>
+
+
 </head>
 
 <body id="page-top" class="index" onload="set();">
@@ -118,11 +108,11 @@ $page .= <<<EOPAGE
 		}
 		
 		$("#closeX").click(function () {
-			window.location.replace("../index.html");
+			window.location.replace("login_page.php");
 		});
 		
 		$("#closeB").click(function () {
-			window.location.replace("../index.html");
+			window.location.replace("login_page.php");
 		});
 		
 </script>

@@ -22,7 +22,7 @@ $body = <<<EOT
 EOT;
 
 if (isset($_POST['submit'])) {
-    header('Location: ../index.html');
+    header('Location: ../index.php');
 }
 
 $page = generatePage($body, "User Registration Avatar", "", "Sign Up Completed");

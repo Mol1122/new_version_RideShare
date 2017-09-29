@@ -109,11 +109,11 @@ $page .= <<<EOPAGE
 		}
 		
 		$("#closeX").click(function () {
-			window.location.replace("../index.html#portfolio");
+			window.location.replace("../index.php#portfolio");
 		});
 		
 		$("#closeB").click(function () {
-			window.location.replace("../index.html#portfolio");
+			window.location.replace("../index.php#portfolio");
 		});
 		
 </script>
